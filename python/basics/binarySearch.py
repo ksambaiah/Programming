@@ -26,6 +26,7 @@ if __name__ == "__main__":
    size = 30000 
    intArray(size) 
    sortedArray = intArray(size) 
+   # Geneerate random set of sorted array Array
    ele = random.randint(sortedArray[0], sortedArray[-1])
    ele = 999
    match = binarySearch(sortedArray, ele, 0, len(sortedArray)-1)

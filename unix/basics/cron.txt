@@ -1,0 +1,36 @@
+*nix systems (Unix/Linux) all come with cron, we regularly say cron entry.
+
+What is meant by cron entry?
+
+man page says
+cron -- daemon to execute scheduled commands
+
+Listing of existing crontab entries
+crontab -l
+
+Editing cron entries
+crontab -e
+
+examples of cron entries
+21 10 * * *  /path_of_file
+
+21 0-23/4 * * * /path_of_file
+
+First command runs every day at 10.21 hours
+Second command runs every four hours at 21 minutes
+
+What are next three stars?
+
+After hour * refers to day valid values are 1-31
+
+After day next is month 
+
+After month day of the week
+
+12 13 3 4 * /path
+It runs 3'rd day of 4'th month at 13.12
+
+Where are the entries stored?
+/var/spool/cron/username
+
+Apart from system cron entries run from /etc/crontabxxx directories

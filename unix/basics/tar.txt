@@ -1,0 +1,37 @@
+Tar stands for Tape and archive.
+
+If you have multiple directories, subdirectories and files, copying
+them across is difficult. Tar makes it as a single file out of all
+files you wanted to backup or copy across.
+
+Extensions: tar
+Compress and archive: tar.gz or tgz (using gzip)
+
+Creating tar archive and also compressing files at same time
+of directories of Documents and Downloads
+
+tar cvf  mytarfile.tar Documents Downloads
+
+Compress the tar file
+gzip mytarfile.tar
+mytarfile.tar.gz will appear.
+
+Tar and compress at same time
+
+tar cvzf mytarfile.tgz Documents Downloads
+or
+tar cvzf mytarfile.tar.gz Documents Downloads
+
+You would like to list tar file contents, don't wanted to extract
+only wanted to list
+
+tar tvf mytarfile.tar
+If compressed
+tar tvzf mytarfile.tgz
+
+Wanted to extract tar file contents to directory
+
+tar xvf mytarfile.tar
+If compressed
+tar xvzf mytarfile.tgz
+

@@ -1,0 +1,49 @@
+
+Linux is zoo of package managers and install. Let us take
+ways to install Java in Linux distribution.
+
+Tar file
+Download tar file
+tar xvzf myjdk.tgz -C /opt
+
+Your java is extracted to /opt/jdk_14.0.5
+
+You can edit /etc/profile
+
+JAVA_HOME=/opt/jdk_14.0.5
+CLASSPATH=/opt/jdk_14.0.5
+PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME CLASSPATH PATH
+
+------------------------------
+Logout and login or source /etc/profile will do the trick.
+
+However if you are using rpm way
+rpm works only in Redhat, Centos, Fedora distributions
+Others it is different deb for debian distributions
+
+Listing all installed rpm packages
+
+rpm -qa
+
+Listing installed files of one rpm
+
+rpm -ql rpmname
+
+Finding which rpm one file belongs
+
+rpm -qf full_path_of_file
+
+Installing rpm
+
+rpm -ivh rpm_name
+
+We don't install rpm anymore like above as need to download and install
+
+yum install rpm_name
+
+It will install all dependencies too
+
+Removing rpm
+
+rpm -e rpm_name

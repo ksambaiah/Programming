@@ -1,0 +1,18 @@
+ps what is ps?
+
+ps lists process status
+ps
+ps aux
+ps aux | grep java
+
+ps aux lists owner, pid and many other options.
+
+If you wanted to kill a process
+
+kill -9 pid
+
+When to use ps when to use top?
+
+pstree
+
+What are all other ps options of interest?

@@ -1,36 +1,47 @@
 *nix systems (Unix/Linux) all come with cron, we regularly say cron entry.
 
-What is meant by cron entry?
-
-man page says
 cron -- daemon to execute scheduled commands
 
-Listing of existing crontab entries
-crontab -l
+Everyday at 10.30AM run the command
+Every hour at 2.00PM run a command
+Every 1'st Wednesday of the month run commad
 
-Editing cron entries
+The above tasks can be achieved in Unix/Linux environments.
+
+If you login to system, you can list cron entries by 
+
+$crontab -l
+
+Creating or editing cron entries
 crontab -e
 
 examples of cron entries
 21 10 * * *  /path_of_file
 
+Run command every day at 10.21 hours
+
 21 0-23/4 * * * /path_of_file
 
-First command runs every day at 10.21 hours
-Second command runs every four hours at 21 minutes
+Run command every four hours at 21 minutes
 
-What are next three stars?
 
-After hour * refers to day valid values are 1-31
-
-After day next is month 
 
 After month day of the week
 
 12 13 3 4 * /path
-It runs 3'rd day of 4'th month at 13.12
 
-Where are the entries stored?
+Run command at 3'rd day of 4'th month at 13.12
+
+User entries are stored in the file
 /var/spool/cron/username
 
-Apart from system cron entries run from /etc/crontabxxx directories
+System related cron entries are stored in  /etc directory
+cron.d/       cron.deny     cron.monthly/
+cron.daily/   cron.hourly/  cron.weekly/
+
+
+1) System administrators will disable access to cron jobs
+2) If you run program on the command line, it may not be able to 
+run in cron, as many variables will not be available in cron. You
+have to take care of lot of variable manipulation.
+

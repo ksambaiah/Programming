@@ -1,9 +1,12 @@
 
-Linux is zoo of package managers and install. Let us take
-ways to install Java in Linux distribution.
+Linux/Unix have multiple ways to install packages. In Linux
+also installing packages varies from distribution to distribution.
 
-Tar file
-Download tar file
+
+Tar way of installing packages, we take Java and check how to 
+install it.
+Download tar file say jdk, and untar the file.
+
 tar xvzf myjdk.tgz -C /opt
 
 Your java is extracted to /opt/jdk_14.0.5
@@ -18,32 +21,31 @@ export JAVA_HOME CLASSPATH PATH
 ------------------------------
 Logout and login or source /etc/profile will do the trick.
 
-However if you are using rpm way
-rpm works only in Redhat, Centos, Fedora distributions
-Others it is different deb for debian distributions
+RedHat/Centos/Fedora/Oracle distributions use rpm as package
+manager.
 
-Listing all installed rpm packages
+$rpm -qa 
 
-rpm -qa
+Lists all installed rpm on the Linux hosts.
 
-Listing installed files of one rpm
+Listing installed files for a given rpm
 
-rpm -ql rpmname
+$rpm -ql tuned-2.7.1-3.el7.noarch
 
-Finding which rpm one file belongs
+Provides list of all installed files.
 
-rpm -qf full_path_of_file
+Given a file /bin/ls finding which rpm installed above file
 
-Installing rpm
+rpm -qf /bin/ls
 
-rpm -ivh rpm_name
+Installing an rpm
+rpm -ivh rpm_file
 
-We don't install rpm anymore like above as need to download and install
+options i stands for install v for verbose h for hash.
 
-yum install rpm_name
+Downloading file and installing via rpm is a problem because lot
+of dependencies will be there. Ideal way to install is via yum package
+manager.
 
-It will install all dependencies too
-
-Removing rpm
-
-rpm -e rpm_name
+Ubuntu/Debian have deb instead of rpm packages and apt to install similar
+to yum. 

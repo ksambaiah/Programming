@@ -1,0 +1,22 @@
+In Cryptographic terms there are three types of terms we use
+a) Symmetric Algorithms
+b) Asymmetric Algorithm
+c) Hash functions
+
+
+Hash functions doesn't encrypt a file, it creates value of a
+file which is 128 or 256 byte representation. If two files
+are different hash value is different.
+
+Examples of Hash functions:
+md5, sha1, sha256, sha512 and RIPEMD160
+
+$md5sum filename
+$sha1sum filename
+$sha256sum filename
+
+or
+$openssl dgst -md5 filename
+$openssl dgst -sha1 filename
+$openssl dgst -sha256 filename
+$openssl dgst -sha512 filename

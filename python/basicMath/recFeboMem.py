@@ -2,13 +2,14 @@
 
 # Compute fibonacci number
 
-def fib(n):
-    if n <= 2:
-       return n
+def fib(f, d, n):
+    if n == 1:
+       return f
     else:
+       return fib(f+d, f, n-1)
       
 
 if __name__ == "__main__":
-   d = 50
-   fibn = fib(d)
+   d = 42
+   fibn = fib(1,0,d)
    print("Fibonacci number of %d is %d" %(d, fibn))

@@ -9,6 +9,6 @@ def fib(n):
        return (fib(n-1) + fib(n-2))
 
 if __name__ == "__main__":
-   d = 20
+   d = 42
    fibn = fib(d)
    print("Fibonacci number of %d is %d" %(d, fibn))

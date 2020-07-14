@@ -18,8 +18,9 @@ def selectionSort(a):
          
 
 if __name__ == "__main__": 
-   size = 2000
+   size = 20
    #Generate list of size elements
-   randomList = random.sample(range(0, 999999), size)
+   randomList = random.sample(range(-999990, 999999), size)
+   print(randomList)
    sortedList = selectionSort(randomList)
    print(sortedList)

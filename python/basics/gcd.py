@@ -11,8 +11,8 @@ def gcd(i, j):
        return gcd(j, i%j) 
 
 if __name__ == "__main__": 
-   a = random.randint(1, 9999999999)
-   b = random.randint(1, 99999999999999)
+   a = random.randint(1, 999999999999)
+   b = random.randint(1, 999999999999)
    if a > b:
       r = gcd(a, b)
    else:

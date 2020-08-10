@@ -1,0 +1,423 @@
+<configuration>
+
+    <property>
+      <name>dfs.block.access.token.enable</name>
+      <value>true</value>
+      <comment> This is for Secure hadoop environments only.
+      Tokens are wire-serializable objects issued by Hadoop services, which grant access to services. Some services issue tokens to callers which are then used by those callers to directly interact with other services without involving the KDC at all.
+
+Block Tokens
+
+A BlockToken is the token issued for access to a block; it includes:
+
+(userId, (BlockPoolId, BlockId), keyId, expiryDate, access-modes)
+Block Keys
+
+Key used for generating and verifying block tokens. Block Keys are managed in the BlockTokenSecretManager, one in the NN and another in every DN to track the block keys to which it has access.
+
+How this Works:
+
+1. Client asks NN for access to a path, identifying via Kerberos or delegation token.
+
+2. Client talks to DNs with the block, using the Block Token.
+
+3. DN authenticates Block Token using shared-secret with NameNode.
+
+4. if authenticated, DN compares permissions in Block Token with operation requested, then grants or rejects the request.
+
+The client does not have its identity checked by the DNs. That is done by the NN. This means that the client can in theory pass a Block Token on to another process for delegated access to a single block.
+
+
+
+These HDFS Block Tokens do not contain any specific knowledge of the principal running the Datanodes, instead they declare that the caller has stated access rights to the specific block, up until the token expires.
+  </comment>
+    </property>
+
+    <property>
+      <name>dfs.client.block.write.retries</name>
+      <value>3</value>
+      <commeent> The number of retries for writing blocks to the data nodes, before we signal failure to the application </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.max.transfer.threads</name>
+      <value>4096</value>
+      <comment>Specifies the maximum number of threads to use for transferring data in and out of the DN. </comment>
+    </property>
+
+    <property>
+      <name>dfs.blockreport.initialDelay</name>
+      <value>120</value>
+      <comment>When Datanodes come up in large clusters with more than 200 nodes, Namenode will be overwhelmed by the block reports and this can cause Namenode to become unresponsive. If no. of blocks are high too this makes sense. </comment>
+    </property>
+
+   <property>
+      <name>dfs.blocksize</name>
+      <value>sizeinbytes</value>
+      <comment> Size of the block. Either 128MB or 64MB write as 128 * 1024 * 1024 value </comment>
+
+    </property>
+
+    <property>
+      <name>dfs.client.read.shortcircuit</name>
+      <value>true</value>
+      <comment> In HDFS, reads normally go through the DataNode. Thus, when the client asks the DataNode to read a file, the DataNode reads that file off of the disk and sends the data to the client over a TCP socket. So-called “short-circuit” reads bypass the DataNode, allowing the client to read the file directly. Obviously, this is only possible in cases where the client is co-located with the data. Short-circuit reads provide a substantial performance boost to many applications.
+   dfs.client.read.shortcircuit
+This configuration parameter turns on short-circuit local reads.
+
+dfs.client.read.shortcircuit.skip.checksum
+If this configuration parameter is set, short-circuit local reads will skip checksums. This is normally not recommended, but it may be useful for special setups. You might consider using this if you are doing your own checksumming outside of HDFS.
+
+dfs.client.read.shortcircuit.streams.cache.size
+The DFSClient maintains a cache of recently opened file descriptors. This parameter controls the size of that cache. Setting this higher will use more file descriptors, but potentially provide better performance on workloads involving lots of seeks.
+
+dfs.client.read.shortcircuit.streams.cache.expiry.ms
+This controls the minimum amount of time file descriptors need to sit in the FileInputStreamCache before they can be closed for being inactive for too long.
+
+dfs.client.domain.socket.data.traffic
+This control whether we will try to pass normal data traffic over UNIX domain sockets.  
+
+ </comment>
+    </property>
+
+    <property>
+      <name>dfs.client.read.shortcircuit.streams.cache.size</name>
+      <value></value>
+      <comment> Covered above </comment>
+ 
+    </property>
+
+    <property>
+      <name>dfs.cluster.administrators</name>
+      <value> hdfs</value>
+      <comment> Admin users </comment>
+    </property>
+    <property>
+      <name>dfs.datanode.address</name>
+      <value>0.0.0.0:50010</value>
+      <comment> The datanode server address and port for data transfer. </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.balance.bandwidthPerSec</name>
+      <value>100076</value>
+      <comment> Balancer purpose. 	Specifies the maximum amount of bandwidth that each datanode can utilize for the balancing purpose in term of the number of bytes per second. <comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.data.dir</name>
+      <value>/path_of_hdfs_dir</value>
+      <final>true</final>
+      <comment> Determines where on the local filesystem an DFS data node should store its blocks. If this is a comma-delimited list of directories, then data will be stored in all named directories, typically on different devices. Directories that do not exist are ignored. </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.data.dir.perm</name>
+      <value>700</value>
+      <comment>Permissions for the directories on on the local filesystem where the DFS data node store its blocks. The permissions can either be octal or symbolic. </commeent>
+    </property>
+   
+    <property>
+      <name>dfs.datanode.directoryscan.threads</name>
+      <value>7</value>
+      <comment>How many threads should the threadpool used to compile reports for volumes in parallel have. </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.du.reserved</name>
+      <value>inbytes_value</value>
+      <comment>Reserved space in bytes per volume. Always leave this much space free for non dfs use </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.failed.volumes.tolerated</name>
+      <value>0</value>
+      <final>true</final>
+      <comment>The number of volumes that are allowed to fail before a datanode stops offering service. By default any volume failure will cause a datanode to shutdown. </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.fsdatasetcache.max.threads.per.volume</name>
+      <value>24</value>
+      <comment>The DataNode will use this as the maximum number of threads per volume to use for caching new data. </comment>
+    </property> 
+
+    <property>
+      <name>dfs.datanode.handler.count</name>
+      <value>10</value>
+      <commeent>The number of server threads for the datanode. </commeent>
+    </property>
+
+    <property>
+      <name>dfs.datanode.http.address</name>
+      <value>0.0.0.0:50075</value>
+      <comment>The datanode http server address and port. </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.https.address</name>
+      <value>0.0.0.0:50475</value>
+      <comment>The datanode secure http server address and port. </comment>
+    </property>
+
+    <property>
+      <name>dfs.datanode.ipc.address</name>
+      <value>0.0.0.0:8010</value>
+      <comment>The datanode ipc server address and port. </comment>
+    </property>
+
+   <property>
+      <name>dfs.datanode.max.locked.memory</name>
+      <value>65536</value>
+      <comment> The amount of memory in bytes to use for caching of block replicas in memory on the datanode. The datanode's maximum locked memory soft ulimit (RLIMIT_MEMLOCK) must be set to at least this value, else the datanode will abort on startup. By default, this parameter is set to 0, which disables in-memory caching. If the native libraries are not available to the DataNode, this configuration has no effect. </comment>
+    </property>
+
+    <property>
+      <name>dfs.domain.socket.path</name>
+      <value>/var/lib/hadoop-hdfs/dn_socket</value>
+      <comment> socket path </comment>
+    </property>
+
+    <property>
+      <name>dfs.heartbeat.interval</name>
+      <value>3</value>
+      <comment> Deterrmines datanode heartbeat interval in seconds. </comment>
+    </property>
+
+    <property>
+      <name>dfs.hosts.exclude</name>
+      <value>/etc/hadoop/conf/dfs.exclude</value>
+      <comment> nodes exclude </comment>
+    </property>
+
+     <property>
+      <name>dfs.http.policy</name>
+      <value>HTTP_ONLY</value>
+      <comment>	Decide if HTTPS(SSL) is supported on HDFS This configures the HTTP endpoint for HDFS daemons: The following values are supported: - HTTP_ONLY : Service is provided only on http - HTTPS_ONLY : Service is provided only on https - HTTP_AND_HTTPS : Service is provided both on http and https </comment>
+    </property>
+
+    <property>
+      <name>dfs.https.port</name>
+      <value>50470</value>
+    </property>
+
+    <property>
+      <name>dfs.namenode.accesstime.precision</name>
+      <value>0</value>
+      <comment> The access time for HDFS file is precise upto this value. The default value is 1 hour. Setting a value of 0 disables access times for HDFS. </commeent>
+    </property>
+
+    <property>
+      <name>dfs.namenode.avoid.read.stale.datanode</name>
+      <value>true</value>
+      <comment>Indicate whether or not to avoid reading from "stale" datanodes whose heartbeat messages have not been received by the namenode for more than a specified time interval. Stale datanodes will be moved to the end of the node list returned for reading. See dfs.namenode.avoid.write.stale.datanode for a similar setting for writes. </commeent>
+    </property>
+   
+   <property>
+      <name>dfs.namenode.avoid.write.stale.datanode</name>
+      <value>true</value>
+      <comment>Indicate whether or not to avoid writing to "stale" datanodes whose heartbeat messages have not been received by the namenode for more than a specified time interval. Writes will avoid using stale datanodes unless more than a configured ratio (dfs.namenode.write.stale.datanode.ratio) of datanodes are marked as stale. See dfs.namenode.avoid.read.stale.datanode for a similar setting for reads. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.checkpoint.dir</name>
+      <value>/disks/1/hadoop/hdfs/secondarynamenode</value>
+      <comment>is the directory on the local filesystem where the DFS secondary name node should store the temporary images to merge. If this is a comma-delimited list of directories then the image is replicated in all of the directories for redundancy. This is not a mandatory location. Without this directory also the hadoop cluster will start. This will be located in the secondary namenode host. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.checkpoint.edits.dir</name>
+      <value>${dfs.namenode.checkpoint.dir}</value>
+      <comment>Determines where on the local filesystem the DFS secondary name node should store the temporary edits to merge. If this is a comma-delimited list of directoires then teh edits is replicated in all of the directoires for redundancy. Default value is same as dfs.namenode.checkpoint.dir </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.checkpoint.period</name>
+      <value>1800</value>
+      <comment>	The number of seconds between two periodic checkpoints. </commeent>
+    </property>
+    <property>
+      <name>dfs.namenode.checkpoint.txns</name>
+      <value>2000000</value>
+      <comment>The Secondary NameNode or CheckpointNode will create a checkpoint of the namespace every 'dfs.namenode.checkpoint.txns' transactions, regardless of whether 'dfs.namenode.checkpoint.period' has expired. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.fs-limits.max-directory-items</name>
+      <value>6400000</value>
+      <comment>Defines the maximum number of items that a directory may contain. A value of 0 will disable the check. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.handler.count</name>
+      <value>75</value>
+      <comment>The number of server threads for the namenode. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.http-address</name>
+      <value>namenode.service.consul:50070</value>
+      <final>true</final>
+      <comment>The address and the base port where the dfs namenode web ui will listen on </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.https-address</name>
+      <value>namenode.service.consul:50470</value>
+      <comment> https of namenode </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.name.dir</name>
+      <value>/disks/1/hadoop/hdfs/namenode</value>
+      <final>true</final>
+      <comment>Determines where on the local filesystem the DFS name node should store the name table(fsimage). If this is a comma-delimited list of directories then the name table is replicated in all of the directories, for redundancy. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.name.dir.restore</name>
+      <value>true</value>
+      <comment>	Set to true to enable NameNode to attempt recovering a previously failed dfs.namenode.name.dir. When enabled, a recovery of any failed directory is attempted during checkpoint.  </comment>
+      </property>
+
+    <property>
+      <name>dfs.namenode.safemode.threshold-pct</name>
+      <value>0.98f</value>
+      <comment>Specifies the percentage of blocks that should satisfy the minimal replication requirement defined by dfs.namenode.replication.min. Values less than or equal to 0 mean not to wait for any particular percentage of blocks before exiting safemode. Values greater than 1 will make safe mode permanent. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.secondary.http-address</name>
+      <value>secondarynamenode.service.consul:50090</value>
+      <comment> http address of snn </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.stale.datanode.interval</name>
+      <value>30000</value>
+      <comment>Default time interval for marking a datanode as "stale", i.e., if the namenode has not received heartbeat msg from a datanode for more than this time interval, the datanode will be marked and treated as "stale" by default. The stale interval cannot be too small since otherwise this may cause too frequent change of stale states. We thus set a minimum stale interval value (the default value is 3 times of heartbeat interval) and guarantee that the stale interval cannot be less than the minimum value. A stale data node is avoided during lease/block recovery. It can be conditionally avoided for reads (see dfs.namenode.avoid.read.stale.datanode) and for writes (see dfs.namenode.avoid.write.stale.datanode). </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.write.stale.datanode.ratio</name>
+      <value>1.0f</value>
+      <comment>When the ratio of number stale datanodes to total datanodes marked is greater than this ratio, stop avoiding writing to stale nodes so as to prevent causing hotspots. </comment>
+     </property>
+
+    <property>
+      <name>dfs.namenode.replication.max-streams</name>
+      <value>100</value>
+      <comment>Hard limit for the number of highest-priority replication streams. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.replication.max-streams-hard-limit</name>
+      <value>100</value>
+      <comment>Hard limit for the number of highest-priority replication streams. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.replication.work.multiplier.per.iteration</name>
+      <value>20</value>
+      <comment>*Note*: Advanced property. Change with caution. This determines the total amount of block transfers to begin in parallel at a DN, for replication, when such a command list is being sent over a DN heartbeat by the NN. The actual number is obtained by multiplying this multiplier with the total number of live nodes in the cluster. The result number is the number of blocks to begin transfers immediately for, per DN heartbeat. This number can be any positive, non-zero integer. </comment>
+    </property>
+
+    <property>
+      <name>dfs.namenode.replication.min</name>
+      <value>2</value>
+      <comment>Minimal block replication. </comment>
+    </property>
+   
+    <property>
+      <name>dfs.permissions.enabled</name>
+      <value>true</value>
+      <comment>If "true", enable permission checking in HDFS. If "false", permission checking is turned off, but all other behavior is unchanged. Switching from one parameter value to the other does not change the mode, owner or group of files or directories. </comment>
+    </property>
+
+    <property>
+      <name>dfs.permissions.superusergroup</name>
+      <value>hdfs</value>
+    </property>
+
+    <property>
+      <name>dfs.replication</name>
+      <value>2</value>
+    </property>
+
+    <property>
+      <name>dfs.replication.max</name>
+      <value>6</value>
+    </property>
+
+    <property>
+      <name>dfs.support.append</name>
+      <value>true</value>
+      <final>true</final>
+      <comment> Does HDFS allow appends to files? </comment>
+    </property>
+
+    <property>
+      <name>dfs.webhdfs.enabled</name>
+      <value>true</value>
+      <final>true</final>
+      <comment> webhdfs enabled? </comment>
+    </property>
+
+    <property>
+      <name>fs.permissions.umask-mode</name>
+      <value>022</value>
+      <comment> umask </comment>
+    </property>
+
+    <property>
+      <name>HADOOP_DATANODE_OPTS</name>
+      <value>-Xloggc:/local/logs/hadoop/$USER/gc.log-`date +&#39;%Y%m%d%H%M&#39;` -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps</value>
+    </property>
+
+  <property>
+    <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
+    <value>false</value>
+    <comment>	If true (the default), then the namenode requires that a connecting datanode's address must be resolved to a hostname. If necessary, a reverse DNS lookup is performed. All attempts to register a datanode from an unresolvable address are rejected. It is recommended that this setting be left on to prevent accidental registration of datanodes listed by hostname in the excludes file during a DNS outage. Only set this to false in environments where there is no infrastructure to support reverse DNS lookup. </comment>
+  </property>
+
+  <property>
+    <name>dfs.namenode.audit.log.async</name>
+    <value>true</value>
+    <comment> 	If true, enables asynchronous audit log. </commeent>
+  </property>
+
+  <property>
+    <name>dfs.client.block.write.replace-datanode-on-failure.enable</name>
+    <value>true</value>
+    <comment> If there is a datanode/network failure in the write pipeline, DFSClient will try to remove the failed datanode from the pipeline and then continue writing with the remaining datanodes. As a result, the number of datanodes in the pipeline is decreased. The feature is to add new datanodes to the pipeline. This is a site-wide property to enable/disable the feature. When the cluster size is extremely small, e.g. 3 nodes or less, cluster administrators may want to set the policy to NEVER in the default configuration file or disable this feature. Otherwise, users may experience an unusually high rate of pipeline failures since it is impossible to find new datanodes for replacement. See also dfs.client.block.write.replace-datanode-on-failure.policy </comment>
+  </property>
+
+  <property>
+    <name>dfs.client.block.write.replace-datanode-on-failure.policy</name>
+    <value>ALWAYS</value>
+    <comment> This property is used only if the value of dfs.client.block.write.replace-datanode-on-failure.enable is true. ALWAYS: always add a new datanode when an existing datanode is removed. NEVER: never add a new datanode. DEFAULT: Let r be the replication number. Let n be the number of existing datanodes. Add a new datanode only if r is greater than or equal to 3 and either (1) floor(r/2) is greater than or equal to n; or (2) r is greater than n and the block is hflushed/appended. </comment>
+  </property>
+  <property>
+    <name>dfs.image.transfer.bandwidthPerSec</name>
+    <value>524288000</value>
+    <comment>	Maximum bandwidth used for image transfer in bytes per second. This can help keep normal namenode operations responsive during checkpointing. The maximum bandwidth and timeout in dfs.image.transfer.timeout should be set such that normal image transfers can complete successfully. A default value of 0 indicates that throttling is disabled. </comment>
+  </property>
+
+  <property>
+    <name>dfs.image.transfer.timeout</name>
+    <value>360000</value>
+    <comment>Socket timeout for image transfer in milliseconds. This timeout and the related dfs.image.transfer.bandwidthPerSec parameter should be configured such that normal image transfer can complete successfully. This timeout prevents client hangs when the sender fails during image transfer. This is socket timeout during image tranfer. </comment>
+  </property>
+
+  <property>
+    <name>dfs.balancer.moverThreads</name>
+    <value>1000</value>
+    <comment>Thread pool size for executing block moves. moverThreadAllocator </comment>
+  </property>
+  <property>
+    <name>dfs.balancer.dispatcherThreads</name>
+    <value>60</value>
+     <comment>	Size of the thread pool for the HDFS balancer block mover. dispatchExecutor </comment>
+  </property>
+
+ </configuration>

@@ -1,0 +1,117 @@
+    <configuration>
+
+    <property>
+      <name>yarn.scheduler.capacity.default.minimum-user-limit-percent</name>
+      <value>40</value>
+      <description>This setting determines the minimum limit that any user’s share of the queue capacity can shrink to. Irrespective of this limit, any user can come into the queue and take more than his or her allocated share if there are idle resources available. </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.maximum-am-resource-percent</name>
+      <value>50</value>
+      <description>Maximum percent of resources in the cluster which can be used to run application masters - controls number of concurrent active applications. Limits on each queue are directly proportional to their queue capacities and user limits. Specified as a float - ie 0.5 = 50%. Default is 10%. This can be set for all queues with yarn.scheduler.capacity.maximum-am-resource-percent and can also be overridden on a per queue basis by setting yarn.scheduler.capacity.<queue-path>.maximum-am-resource-percent </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.maximum-applications</name>
+      <value>9000</value>
+      <description>Maximum number of applications in the system which can be concurrently active both running and pending. Limits on each queue are directly proportional to their queue capacities and user limits. This is a hard limit and any applications submitted when this limit is reached will be rejected. Default is 10000. This can be set for all queues with yarn.scheduler.capacity.maximum-applications and can also be overridden on a per queue basis by setting yarn.scheduler.capacity.<queue-path>.maximum-applications. Integer value expected </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.node-locality-delay</name>
+      <value>200</value>
+      <description>Number of missed scheduling opportunities after which the CapacityScheduler attempts to schedule rack-local containers. Typically, this should be set to number of nodes in the cluster. By default is setting approximately number of nodes in one rack which is 40. Positive integer value is expected. </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.acl_administer_queue</name>
+      <value>sam</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.acl_submit_applications</name>
+      <value>sam</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.capacity</name>
+      <value>100</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.default.acl_administer_jobs</name>
+      <value>*</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.default.acl_submit_applications</name>
+      <value>*</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.default.capacity</name>
+      <value>100</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.default.maximum-capacity</name>
+      <value>100</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.default.state</name>
+      <value>RUNNING</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.default.user-limit-factor</name>
+      <value>3</value>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.queues</name>
+      <value>dept1,dept2,dept3,dept4</value>
+      <description>Various departments </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.depta.acl_administer_jobs</name>
+      <value>sam</value>
+       <description>To set the list of administrators, who could manage an application on a queue; set the username in a comma separated list for this parameter. A special value of * allows all the users to monitor an application running on a queue. </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.depta.acl_submit_applications</name>
+      <value>sam</value>
+       <description>
+  The ACL of who can administer jobs on the default queue.
+  </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.depta.capacity</name>
+      <value>40</value>
+       <description>Default queue target capacity.</description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.depta.maximum-capacity</name>
+      <value>80</value>
+       <description>Maximum capacity</description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.depta.maximum-applications</name>
+      <value>320</value>
+      <description>Maximum number of applications in the system which can be concurrently active both running and pending. Limits on each queue are directly proportional to their queue capacities and user limits. This is a hard limit and any applications submitted when this limit is reached will be rejected. Default is 10000. This can be set for all queues with yarn.scheduler.capacity.maximum-applications and can also be overridden on a per queue basis by setting yarn.scheduler.capacity.<queue-path>.maximum-applications. Integer value expected. </description>
+    </property>
+
+    <property>
+      <name>yarn.scheduler.capacity.root.depta.state</name>
+      <value>RUNNING</value>
+      <description>state enables the queue to allow jobs or applications to be submitted through them, the state of the queue must be RUNNING. Otherwise an error occurs stating that queue is STOPPED. RUNNING and STOPPED are the permissible values for this parameter. </description>
+    </property>
+
+
+  </configuration>

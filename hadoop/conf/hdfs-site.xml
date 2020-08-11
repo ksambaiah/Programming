@@ -256,14 +256,14 @@ This control whether we will try to pass normal data traffic over UNIX domain so
 
     <property>
       <name>dfs.namenode.http-address</name>
-      <value>namenode.service.consul:50070</value>
+      <value>namenode.fqdn:50070</value>
       <final>true</final>
       <comment>The address and the base port where the dfs namenode web ui will listen on </comment>
     </property>
 
     <property>
       <name>dfs.namenode.https-address</name>
-      <value>namenode.service.consul:50470</value>
+      <value>namenode.fqdn:50470</value>
       <comment> https of namenode </comment>
     </property>
 
@@ -288,7 +288,7 @@ This control whether we will try to pass normal data traffic over UNIX domain so
 
     <property>
       <name>dfs.namenode.secondary.http-address</name>
-      <value>secondarynamenode.service.consul:50090</value>
+      <value>secondarynamenode.fqdn:50090</value>
       <comment> http address of snn </comment>
     </property>
 

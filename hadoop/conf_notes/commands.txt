@@ -1,0 +1,3 @@
+Getting configurations from cli
+
+hdfs getconf -confKey fs.defaultFS

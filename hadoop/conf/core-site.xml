@@ -8,8 +8,8 @@
 
     <property>
       <name>fs.trash.interval</name>
-      <value>360</value>
-      <description>Trash interval </description>
+      <value>3600</value>
+      <description>Trash interval in Minutes </description>
     </property>
 
     <property>

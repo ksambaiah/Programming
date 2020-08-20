@@ -1,0 +1,20 @@
+a) 50070 We use this port for namenode UI
+   http://namenode_fqdn:50070 and most importantly
+   http://namenode_fqdn:50070/jmx
+   dfs.http.address
+   50470 - if you wanted to use https
+b) Metadata services for namenode
+   8080 or 9000
+   If you wanted to connect remote namenode for listing files
+   Configured in fs.default.name
+
+c) 50075 Datanode webUI dfs.datanode.http.address
+   50475 for secure
+   dfs.datanode.http.address or dfs.datanode.https.address
+
+   50010 for data transfer dfs.datanode.address
+   1019  for secure data transfer
+   50020 for metadata operations dfs.datanode.ipc.address
+
+d) 50090 for secondary namenode dfs.secondary.http.address
+

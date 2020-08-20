@@ -1,0 +1,22 @@
+a) 8088 RM webUI yarn.resourcemanager.webapp.address
+
+b) 8090 RM secure webui yarn.resourcemanager.webapp.https.address
+
+c) RM application submission 8050 yarn.resourcemanager.address
+
+d) RM Job submission 8025 yarn.resourcemanager.resource-tracker.address 
+
+e) Scheduler 8030 yarn.resourcemanager.scheduler.address
+
+f) Scheduler address 8141 http yarn.resourcemanager.admin.address
+
+g) Node Manager http 45454  yarn.nodemanager.address
+
+h) 8042 yarn.nodemanager.webapp.address
+
+i) Timeline server http 10200 yarn.timeline-service.address
+j) Timeline server webapp 8188 yarn.timeline-service.webapp.address
+k) Timeline server https webapp 8190 yarn.timeline-service.webapp.https.address
+l) job history service 19888 yarn.log.server.url
+
+

@@ -1,0 +1,8 @@
+EBIT - Earning before interest and taxes
+EBITDA - Earnings before Interest, Taxes, Depreciation and Amortisation
+
+EBIT = Revenue - Operating expenses
+
+
+PEG Ratio - PE / Earning Growth
+

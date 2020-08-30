@@ -1,0 +1,35 @@
+P/E - What is p/e
+
+Let us take example of one imaginary company.
+
+Book value of share Rs 10
+Share is trading at Rs 232
+Total Shares issues 120000
+
+Yearly income of the company  300000
+
+eps Earnings per share = total income / Total shares    300000 / 120000
+
+P/E price to earning ration is 232 / eps
+
+=============================================
+Date: Aug 2020 Let us analyse two companies Nestle and Honeywell
+
+Nestle March 30 - 15658 Share value
+Book Value      - 
+
+Yearly Income - 3,368,00,00,000
+
+Total Shares - 9,64,15,716
+
+EPS = 3,368,00,00,000 / 9,64,15,716 = 349.3
+P/E 15658 / 349 = 44
+
+What is meant by EPS - High number means revenue is high. Low number
+means revenue is not that high.
+P/E high means share price is high, low number means share price is low.
+
+Company P/E might be low but not worth to buy.
+What should we see to buy share? EPS or P/E?
+
+

@@ -35,3 +35,4 @@ tar xvf mytarfile.tar
 If compressed
 tar xvzf mytarfile.tgz
 
+added last line 

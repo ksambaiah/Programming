@@ -25,10 +25,10 @@ This method avoids single point of failure of master, we can run multi master se
 
 Facter: Puppet master requires information about agent it is about to manage. OS, Version, IP etc information is gathered by agent. The tool which gathers this information is called facter.
 Manifest: Puppet language files are called manifest with extension .pp.
-Module: Module manages a specific task for agent, such as installing and configuring a piece of software like mysql or postgresql or nginx webserver. It is a way of abstraction similar to cpan modules for perl or python modules.
+Module: Module manages a specific task for agent, such as installing and configuring a piece of software like MySQL or PostgreSQL or nginx webserver. It is a way of abstraction similar to cpan modules for Perl or python modules.
 Catalog: Puppet compiles manifests into a catalog, catalog is created for each agent.
 
-Puppet code is declarative, meaning you describe what you wanted, similar to sql statements unlike python program. This is accomplished by Puppet Domain Specific Language or Puppet DSL. Puppet is idompotenet meaning repeatedly apply code to guarantee a desired state on a system, with the assurance that you will get the same result every time.
+Puppet code is declarative, meaning you describe what you wanted, similar to sql statements unlike python program. This is accomplished by Puppet Domain Specific Language or Puppet DSL. Puppet is idempotent meaning repeatedly apply code to guarantee a desired state on a system, with the assurance that you will get the same result every time.
 
 ### c. Architecture
 
@@ -44,7 +44,7 @@ Communications and security
 Puppet agent nodes and Puppet masters communicate by HTTPS with client verification. The Puppet master provides an HTTP interface, with various endpoints available. When requesting or submitting anything to the master, the agent makes an HTTPS request to one of those endpoints. Client-verified HTTPS means each master or agent must have an identifying SSL certificate. They each examine their certificate to decide whether to allow an exchange of information.  
 Puppet includes a built-in certificate authority for managing certificates. Agents can automatically request certificates through the master's HTTP API. You can use the puppet cert command to inspect requests and sign new certificates. Agents can then download the signed certificates.
 
-![Agent-Marster https config](./images/puppethttps.jpeg)
+<img src="C:\lab\Programming\configmgmt\images\How-the-Puppet-connections-are-getting-established-between-puppet-master-server-and-Puppet-agent-nodes.png" alt="How-the-Puppet-connections-are-getting-established-between-puppet-master-server-and-Puppet-agent-nodes" style="zoom:80%;" />
 
 
 **The stand-alone architecture**
@@ -63,6 +63,8 @@ Server compiles the configuration from source(manifests) into a catalog and retu
 Client applies the catalog, resulting in configuration changes.
 
 *The main constraint of the client/server model of Puppet is that the server is CPU bound on catalog compilations. This can limit the scale at which puppet can be run on a single Puppet masters. The limiting factors of scale are, number of hosts per Puppet server and interval between client check-ins.*
+
+<img src="C:\lab\Programming\configmgmt\image_collection\puppet_platform.png" alt="puppet_platform" style="zoom: 40%;" />
 
 ## 3. Components
 Following are the key components of Puppet:
@@ -83,7 +85,7 @@ Agents configuration details are written in Ruby with extension of .pp. Configur
 **Module**
 
 The puppet module is a set of manifests and data, data is file, facts, or templates. The module follows a specific directory structure. These modules allow the puppet program to split into multiple manifests. Modules are self-contained bundles of data or code. 
-Module is an abstraction of multiple manifests together. Standard modules are hosted in puppet forge site like installing mysql/postgressql or apache webserver.
+Module is an abstraction of multiple manifests together. Standard modules are hosted in puppet forge site like installing MySQL/PostgreSQL or apache webserver.
 
 **Resource**
 
@@ -163,7 +165,7 @@ package { 'openssh':
 ```
 
 We listed examples of file, user, service and package resource types. We didn't cover
-how to make depenency or all options for each resource type, they will be covered in lab.
+how to make dependency or all options for each resource type, they will be covered in lab.
 
 Resources are the building blocks of puppet. Each resource describes the desired state for some aspects of a system, such as service, file, and package. Resources in the puppet are aggregated together by using either "define" or "classes." This feature provides help in organizing a module.
 Every resource declaration at least contains a resource type, a title, and a set of attributes.
@@ -179,7 +181,7 @@ $package = "vim"
 package {  $package:   
    ensure => "installed"   
 } 
-``` 
+```
 Loops are used to run the same set of code multiple times until a defined condition becomes true. To perform the loop, we can use an array. Let's see an example:
 
 ```
@@ -346,6 +348,8 @@ file { "/usr/local/httpd-2.2.22.tar.gz":
 **Puppet Classes**
 
 Puppet classes are the set of puppet resources that are grouped together as a single unit. Classes are used to model the fundamental aspects of the node. Puppet uses classes to make the structure reusable and organized. Classes can only be evaluated once per node. Classes are described within the manifest file, located inside Puppet modules. The main reason for using a class is to decrease the duplication of the same code inside any manifest file or other puppet code.
+
+<img src="C:\lab\Programming\configmgmt\image_collection\scope-euler-diagram.png" alt="scope-euler-diagram" style="zoom:80%;" />
 
 **Defining a Class**
 

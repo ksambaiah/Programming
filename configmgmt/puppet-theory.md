@@ -64,7 +64,7 @@ Client applies the catalog, resulting in configuration changes.
 
 *The main constraint of the client/server model of Puppet is that the server is CPU bound on catalog compilations. This can limit the scale at which puppet can be run on a single Puppet masters. The limiting factors of scale are, number of hosts per Puppet server and interval between client check-ins.*
 
-<img src="C:\lab\Programming\configmgmt\image_collection\puppet_platform.png" alt="puppet_platform" style="zoom: 40%;" />
+<img src="C:\lab\Programming\configmgmt\images\puppet_platform.png" alt="puppet_platform" style="zoom:40%;" />
 
 ## 3. Components
 Following are the key components of Puppet:
@@ -349,7 +349,7 @@ file { "/usr/local/httpd-2.2.22.tar.gz":
 
 Puppet classes are the set of puppet resources that are grouped together as a single unit. Classes are used to model the fundamental aspects of the node. Puppet uses classes to make the structure reusable and organized. Classes can only be evaluated once per node. Classes are described within the manifest file, located inside Puppet modules. The main reason for using a class is to decrease the duplication of the same code inside any manifest file or other puppet code.
 
-<img src="C:\lab\Programming\configmgmt\image_collection\scope-euler-diagram.png" alt="scope-euler-diagram" style="zoom:80%;" />
+<img src="C:\lab\Programming\configmgmt\images\scope-euler-diagram.png" alt="scope-euler-diagram" style="zoom:80%;" />
 
 **Defining a Class**
 

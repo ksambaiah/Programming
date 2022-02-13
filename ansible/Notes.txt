@@ -1,0 +1,38 @@
+
+i) How to list tasks in a playbook
+
+ansible-playbook --list-tasks playbookname.yml
+
+ii) Running particular task in playbook
+
+ansible-playbook playbookname.yml --tags "XYZ,ABC"
+
+iii) Listing hosts in the playbook
+
+ansible-playbook list-hosts playbookname.yml 
+
+iv) only run plays and tasks whose tags do not match these values
+
+ansible-playbook playbookname.yml --skip-tags "XYZ,ABC"
+
+More options
+  --step                one-step-at-a-time: confirm each task before running
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  -C, --check           don't make any changes; instead, try to predict some of the changes that
+                        may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those
+                        files; works great with --check
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file
+                        is deprecated
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -t TAGS, --tags TAGS  only run plays and tasks tagged with these values
+  -v, --verbose         verbose mode (-vvv for more, -vvvv to enable connection debugging)
+
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -b, --become          run operations with become (does not imply password prompting)

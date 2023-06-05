@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 # Factorial of numbers
+# This is simple program.
 
 def fact(n):
     if n == 1:

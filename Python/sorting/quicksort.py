@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import random
 import sys
+import argparse
 
 """
 Quick sort as name suggest fastest start with O(nlog(n)) time it finishes sorting on average
@@ -35,16 +36,17 @@ def qsort(arr, start, end):
        qsort(arr, r+1, end)
     return arr
 
+def get_args():
+    parser = argparse.ArgumentParser(prog='quicksort.py', description='quicksort program sorts array of given length')
+    parser.add_argument('-n', dest='len', type=int, help='integer has to be provided', required=True)
+    args = parser.parse_args()
+    return args
+
 if __name__ == "__main__":
-    print(sys.argv[0])
-    print(sys.argv[1])
-    if len(sys.argv) != 2:
-       print("usage: sys.argv[0] num  num is the number of elements to sort out")
-       # Exit the program
-       sys.exit(100)
-    if not isinstance(int(sys.argv[1]), int):
-       print("Usage sys.argv[0] num num must be of integer type")
-       sys.exit(101)
-    arr = genarr(int(sys.argv[1]))
+    args = get_args()
+    arr = genarr(args.len)
+    print("Array before sorting of length ", len(arr))
     print(arr)
+    print("Array after sorting")
     print(qsort(arr, 0, len(arr)-1)) 
+    sys.exit(0)

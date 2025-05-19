@@ -61,6 +61,6 @@ if __name__ == "__main__":
     print("Array after sorting")
     print(ssort(arr)) 
     if args.test and (is_sorted_ascending(arr) is True):
-        print("Array is sorted order")
+        print("Array is in sorted order")
           
     sys.exit(0)

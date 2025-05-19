@@ -47,7 +47,7 @@ class TestArraySorted(unittest.TestCase):
         self.assertFalse(is_sorted_ascending(self.arr))
 
 def get_args():
-    parser = argparse.ArgumentParser(prog='selectionsort.py', description='selection sort program sorts array of given length')
+    parser = argparse.ArgumentParser(prog=sys.argv[0], description='selection sort program sorts array of given length')
     parser.add_argument('-n', dest='len', type=int, help='integer has to be provided', required=True)
     parser.add_argument('-t', dest='test',  help='testing if array sorted')
     args = parser.parse_args()

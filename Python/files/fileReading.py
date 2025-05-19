@@ -8,6 +8,7 @@ def openfile(filen):
     try:
         with open(filen, 'r') as f:
             data = f.read()
+            print(data)
     except FileNotFoundError:
         print("File not found!")
         sys.exit(100)
@@ -17,7 +18,7 @@ def openfile(filen):
 
 
 def get_args():
-    parser = argparse.ArgumentParser(prog='selectionsort.py', description='File need to be passed')
+    parser = argparse.ArgumentParser(prog=sys.argv[0], description='File need to be passed')
     parser.add_argument('-f', dest='filen', help='filename has to be provided', required=True)
     args = parser.parse_args()
     return args

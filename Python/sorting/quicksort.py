@@ -37,7 +37,7 @@ def qsort(arr, start, end):
     return arr
 
 def get_args():
-    parser = argparse.ArgumentParser(prog='quicksort.py', description='quicksort program sorts array of given length')
+    parser = argparse.ArgumentParser(prog=sys.argv[0], description='quicksort program sorts array of given length')
     parser.add_argument('-n', dest='len', type=int, help='integer has to be provided', required=True)
     args = parser.parse_args()
     return args

@@ -5,7 +5,7 @@ import argparse
 import unittest
 
 """
-selection sort n^{2} algorithm
+insertion sort n^{2} algorithm
 We are using argparse module to pass arguments
 We are using sys module for exit status
 unittest module for test cases
@@ -21,16 +21,16 @@ def genarr(n):
        arr.append(num)
     return arr
 
-def ssort(arr):
+def isort(arr):
     """ Selection sort is basic sorting type """
     size = len(arr) 
-    for i in range(0, size):
-       index = i
-       for j in range(i+1, size):
-           if arr[index] > arr[j]:
-              index = j
-       if i != index:
-           (arr[i], arr[index]) = (arr[index], arr[i])
+    for j in range(1, size):
+       pivot  = arr[j]
+       i = j - 1
+       while i >= 0 and arr[i] > pivot:
+          arr[i+1] = arr[i]
+          i = i -1    
+       arr[i+1] = pivot
     return arr
 
 # Take array and test arr[i] <= arr[i+1]] srarting i 0 to n-1
@@ -59,8 +59,7 @@ if __name__ == "__main__":
     print("Array before sorting of length ", len(arr))
     print(arr)
     print("Array after sorting")
-    print(ssort(arr)) 
+    print(isort(arr)) 
     if args.test and (is_sorted_ascending(arr) is True):
         print("Array is in sorted order")
-          
     sys.exit(0)

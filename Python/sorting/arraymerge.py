@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+import sys
+import argparse
+import random
+import numpy as np
+
+"""
+ Given array arr and element r which sorts 0 to r and r+1 to len(arr) merge the array and make
+ sorted array.
+ This is the building block of the merge sort  """
+
+def get_args():
+    parser = argparse.ArgumentParser(prog=sys.argv[0], description='Merging two sorted arrays')
+    parser.add_argument('-n', dest='len', type=int, help='integer has to be provided', required=True)
+    args = parser.parse_args()
+    return args
+
+def genarr(n,r):
+    arr = []
+    for i in range(n):
+       if i == 0 or i == r:
+           num = random.randint(-99999919999999, 99999)
+       else:
+           num = random.randint(arr[i-1], 999999999999999999)
+       arr.append(num)
+       
+    return arr
+
+def merge(arr1, arr2):
+    mergearr = []
+    i = j =  0
+    while i < len(arr1) and j < len(arr2):
+        if arr1[i] <= arr2[j]:
+           mergearr.append(arr1[i])
+           i = i+1
+        else:
+           mergearr.append(arr2[j]) 
+           j = j+1
+    while i < len(arr1):
+       mergearr.append(arr1[i])
+       i = i+1
+    while j < len(arr2):
+       mergearr.append(arr2[j])
+       j = j+1
+    return mergearr
+if __name__ == "__main__":
+    args = get_args()
+    r = random.randint(0, args.len)
+    print("Number where we split is ", r)
+    arr = genarr(args.len, r)
+    print(arr)
+    print(np.sort(arr))
+    print(merge(arr[:r-1], arr[r:]))
+    

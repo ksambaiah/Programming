@@ -6,3 +6,5 @@
  - Don't be very clever in the comments
  - Log appropriately, some one is going to debug the issue based on the logs, if you don't do proper logging he needs to read code which is difficult times.
  - Manage error handling with appropriate exceptions.
+ - Dynamic Typing
+

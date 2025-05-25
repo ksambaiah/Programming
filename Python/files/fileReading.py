@@ -12,6 +12,9 @@ def openfile(filen):
         print("File not found!")
     except IOError as e:
         print("An error occurred:", e)
+    finally:
+       if f:
+           f.close()
 
 
 def get_args():
